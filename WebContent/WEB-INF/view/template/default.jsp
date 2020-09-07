@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${title}</title>
+<link rel="stylesheet" type="text/css" href="/res/css/common.css">
 </head>
 <body>
 	<!-- Default로 보여주는 공통 부분 -->
