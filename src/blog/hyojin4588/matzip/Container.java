@@ -25,7 +25,8 @@ public class Container extends HttpServlet {
 			System.out.println(String.format("uriArr[%d] : %s", i, uriArr[i]));
 		}
 		// uriArr 안에 있는 값들을 확인하는 for문 <끝>
-		// 첫번째 값이 res인거 뽑아내는 작업 <끝>
+		// 첫번째 값이 res인거 뽑아내는 작업 <끝>#
+		// test
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
