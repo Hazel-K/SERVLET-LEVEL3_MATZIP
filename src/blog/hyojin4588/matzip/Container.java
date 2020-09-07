@@ -19,8 +19,8 @@ public class Container extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 본 SERVLET URI와 URL값 확인 <시작>
-//		System.out.println("uri : " + request.getRequestURI()); // uri : /main
-//		System.out.println("url : " + request.getRequestURL()); // url : http://localhost:8089/main
+//		System.out.println("uri : " + request.getRequestURI());
+//		System.out.println("url : " + request.getRequestURL());
 		// 본 SERVLET URI와 URL값 확인 <끝>
 		
 		// 첫번째 값이 res인거 뽑아내는 작업 <시작>
@@ -42,7 +42,14 @@ public class Container extends HttpServlet {
 	}
 	
 	private void proc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String temp = mapper.nav(request);
+		String temp = mapper.nav(request); // URI 주소 받기
+		
+		// temp안에 /가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <시작>
+		if(temp.indexOf("/") >=0 && "redirect:".equals(temp.substring(0, temp.indexOf("/")))) {			
+			response.sendRedirect(temp.substring(temp.indexOf("/")));
+			return;
+		}
+		// temp안에 /가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <끝>
 		
 		// login 에러처리 스위치문 <시작>
 		switch(temp) {
