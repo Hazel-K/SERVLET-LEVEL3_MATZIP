@@ -12,4 +12,20 @@ public class UserController {
 		request.setAttribute(Const.VIEW, "/user/login"); // view : "/user/login"
 		return ViewRef.DEFAULT; // 결과값 : "/template/default"
 	}
+	
+	// /user/join 경로로 접속 시 해당 메소드 실행
+	public String join(HttpServletRequest request) {
+		request.setAttribute(Const.TITLE, "회원가입"); // title : "회원가입"
+		request.setAttribute(Const.VIEW, "/user/join"); // view : "/user/join"
+		return ViewRef.DEFAULT; // 결과값 : "/template/default"
+	}
+	
+	// /user/joinProc 경로로 접속 시 해당 메소드 실행
+	public String joinProc(HttpServletRequest request) {
+		String user_id = request.getParameter("user_id");
+		String user_pw = request.getParameter("user_pw");
+		String nm = request.getParameter("user_pw");
+		
+		return "redirect:/user/login";
+	}
 }
