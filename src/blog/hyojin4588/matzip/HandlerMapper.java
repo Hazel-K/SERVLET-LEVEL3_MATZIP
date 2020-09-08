@@ -19,10 +19,10 @@ public class HandlerMapper {
 		// 호출 시 URI 이름으로 구성된 배열 생성 <끝>
 
 		// uriArr 안에 있는 값들을 확인하는 for문 <시작>
-		System.out.println("배열 길이 : " + uriArr.length);
-		for(int i = 0; i < uriArr.length; i++) {
-			System.out.println(String.format("uriArr[%d] : %s", i, uriArr[i]));  
-		}
+//		System.out.println("배열 길이 : " + uriArr.length);
+//		for(int i = 0; i < uriArr.length; i++) {
+//			System.out.println(String.format("uriArr[%d] : %s", i, uriArr[i]));  
+//		}
 		// uriArr 안에 있는 값들을 확인하는 for문 <끝>
 
 		// http://location:8089/(컨트롤러 구분)/(호출할 메소드) 구조이므로, 길이는 항상 3이상이어야 한다.
