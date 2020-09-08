@@ -63,11 +63,11 @@ public class UserDAO {
 			public void executeQuery(ResultSet rs) throws SQLException {
 				if(rs.next()) {
 					int i_user = rs.getInt("i_user");
-					String user_id = rs.getNString("user_id");
-					String user_pw = rs.getNString("user_pw");
-					String salt = rs.getNString("salt");
-					String nm = rs.getNString("nm");
-					String profile_img = rs.getNString("profile_img");
+					String user_id = rs.getString("user_id");
+					String user_pw = rs.getString("user_pw");
+					String salt = rs.getString("salt");
+					String nm = rs.getString("nm");
+					String profile_img = rs.getString("profile_img");
 					String r_dt = rs.getString("r_dt"); // date에 NString 달면 오류 생김
 					String m_dt = rs.getString("m_dt"); // date에 NString 달면 오류 생김
 					

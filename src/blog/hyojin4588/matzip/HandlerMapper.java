@@ -2,14 +2,21 @@ package blog.hyojin4588.matzip;
 
 import javax.servlet.http.HttpServletRequest;
 
+import blog.hyojin4588.matzip.restaurant.restaurantController;
 import blog.hyojin4588.matzip.user.UserController;
 
 public class HandlerMapper {
+	// 각 페이지로 접속을 돕는 멤버 클래스
 	private UserController userCon;
+	private restaurantController resCon;
+	// 각 페이지로 접속을 돕는 멤버 클래스
 
+	// 멤버 클래스의 싱글톤 화
 	public HandlerMapper() {
 		userCon = new UserController();
+		resCon = new restaurantController();
 	}
+	// 멤버 클래스의 싱글톤 화
 
 	// 호출 당하는 것을 만들면 FrameWork, 호출만 할 거라면 library
 	public String nav(HttpServletRequest request) {
@@ -30,7 +37,7 @@ public class HandlerMapper {
 			return "405"; // 에러 코드 반환
 		}
 		// http://location:8089/(컨트롤러 구분)/(호출할 메소드) 구조이므로, 길이는 항상 3이상이어야 한다.
-
+		
 		// 페이지 접속기 <시작>
 		switch (uriArr[1]) {
 		// user로 시작하는 경우 스위치문 <시작>
@@ -59,6 +66,11 @@ public class HandlerMapper {
 				return userCon.joinProc(request);
 			// user/joinProc으로 접속하는 경우
 				
+			// user/ajaxIdChk으로 접속하는 경우
+			case "ajaxIdChk":
+				return userCon.ajaxIdChk(request);
+			// user/ajaxIdChk으로 접속하는 경우
+
 			}
 			// user/*으로 접속을 돕는 스위치문 <끝>
 		// user로 시작하는 경우 스위치문 <끝>
@@ -71,9 +83,7 @@ public class HandlerMapper {
 			
 			// restaurant/resMap으로 접속하는 경우
 			case "resMap":
-				request.setAttribute(Const.TITLE, "식당 지도");
-				request.setAttribute(Const.VIEW, "/restaurant/resMap");
-				return ViewRef.TYPE_1;
+				return resCon.resMap(request);
 			// restaurant/resMap으로 접속하는 경우
 			
 			// restaurant/*로 접속을 돕는 스위치문 <끝>

@@ -23,8 +23,10 @@ public class UserController {
 			switch(error) {
 			case "2":
 				request.setAttribute("msg", "아이디를 확인해주세요.");
+				break;
 			case "3":
 				request.setAttribute("msg", "비밀번호를 확인해주세요.");
+				break;
 			}			
 		}
 		// loginProc 중 오류 처리 구문 <끝>
@@ -79,5 +81,16 @@ public class UserController {
 			return "redirect:/user/login?error=" + result; //로그인 실패
 		}
 		// 오류처리 스위치문 <끝>
+	}
+	
+	public String ajaxIdChk(HttpServletRequest request) {
+		String user_id = request.getParameter("user_id");
+		UserVO param = new UserVO();
+		param.setUser_id(user_id);
+		param.setUser_pw("");
+		
+		int result = service.login(param);
+		
+		return String.format("ajax:{\"result\": %s}", result);
 	}
 }
