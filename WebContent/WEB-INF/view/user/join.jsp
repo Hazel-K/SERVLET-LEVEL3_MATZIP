@@ -3,6 +3,7 @@
 <div id="sectionContainerCenter">
 	<div>
 	<form class="frm" name="frm" action="/user/joinProc" method="post">
+	<!-- action에 / 붙이면 localhost:3036 다음부터 시작(처음부터), 안붙이면 해당 주소 다음부터 이어서나감 -->
 		<div>
 			<input type="text" name="user_id" placeholder="아이디">
 		</div>

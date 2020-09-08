@@ -43,9 +43,12 @@ public class Container extends HttpServlet {
 	
 	private void proc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = mapper.nav(request); // URI 주소 받기
-//		System.out.println("temp : " + temp);
-//		System.out.println("redirect:/user/login".substring("redirect:/user/login".indexOf("/")));
-//		System.out.println("redirect:/user/login".substring(0, "redirect:/user/login".indexOf("/")));
+		
+		// 테스트 케이스
+//		System.out.println("temp : " + temp); // temp값 확인
+//		System.out.println("redirect:/user/login".substring("redirect:/user/login".indexOf("/"))); // subString의 기능 확인
+//		System.out.println("redirect:/user/login".substring(0, "redirect:/user/login".indexOf("/"))); // subString의 기능 확인
+		// 테스트 케이스
 		
 		// temp안에 "/"가 존재하고, redirect:라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <시작>
 		if(temp.indexOf("/") >=0 && "redirect:".equals(temp.substring(0, temp.indexOf("/")))) {
