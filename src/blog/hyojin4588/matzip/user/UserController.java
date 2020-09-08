@@ -33,14 +33,14 @@ public class UserController {
 		
 		request.setAttribute(Const.TITLE, "로그인"); // title : "로그인"
 		request.setAttribute(Const.VIEW, "/user/login"); // view : "/user/login"
-		return ViewRef.DEFAULT; // 결과값 : "/template/default"
+		return ViewRef.DEFAULT;
 	}
 	
 	// /user/join 경로로 접속 시 해당 메소드 실행
 	public String join(HttpServletRequest request) {
 		request.setAttribute(Const.TITLE, "회원가입"); // title : "회원가입"
 		request.setAttribute(Const.VIEW, "/user/join"); // view : "/user/join"
-		return ViewRef.DEFAULT; // 결과값 : "/template/default"
+		return ViewRef.DEFAULT;
 	}
 	
 	// /user/joinProc 경로로 접속 시 해당 메소드 실행
