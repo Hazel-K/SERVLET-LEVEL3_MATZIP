@@ -44,12 +44,12 @@ public class Container extends HttpServlet {
 	private void proc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = mapper.nav(request); // URI 주소 받기
 		
-		// temp안에 /가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <시작>
+		// temp안에 "/"가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <시작>
 		if(temp.indexOf("/") >=0 && "redirect:".equals(temp.substring(0, temp.indexOf("/")))) {			
 			response.sendRedirect(temp.substring(temp.indexOf("/")));
 			return;
 		}
-		// temp안에 /가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <끝>
+		// temp안에 "/"가 존재하고, redirect라는 글자가 있다면 redirect라고 적힌 다음 경로를 추출해 그 페이지로 이동 <끝>
 		
 		// login 에러처리 스위치문 <시작>
 		switch(temp) {
