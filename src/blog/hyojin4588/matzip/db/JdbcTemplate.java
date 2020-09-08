@@ -25,8 +25,7 @@ public class JdbcTemplate {
 		return result;
 	}
 	
-	public static int executeQuery(String sql, JdbcSelectInterface jdbc) {
-		int result = 0;
+	public static void executeQuery(String sql, JdbcSelectInterface jdbc) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -36,14 +35,12 @@ public class JdbcTemplate {
 			ps = con.prepareStatement(sql);
 			jdbc.prepared(ps);
 			rs = ps.executeQuery();
-			result = jdbc.executeQuery(rs);
+			jdbc.executeQuery(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DbManager.close(con, ps);
 		}
-		
-		return result;
 	}
 	
 }

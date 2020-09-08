@@ -1,7 +1,8 @@
 package blog.hyojin4588.matzip;
 
 public class ViewRef {
-	public static final String URI_USER = "user"; // 탬플릿 기본, 메뉴, 사이드바, 회사 정보 등의 기본적인 페이지를 표시
+	public static final String URI_USER = "user"; // user 폴더
+	public static final String URI_RESTAURANT = "restaurant"; // restaurant 폴더
 	
 	// 무조건 아래 파일들로만 Dispatch를 진행
 	public static final String DEFAULT = "/WEB-INF/view/template/default.jsp"; // 탬플릿 기본, 메뉴, 사이드바, 회사 정보 등의 기본적인 페이지를 표시

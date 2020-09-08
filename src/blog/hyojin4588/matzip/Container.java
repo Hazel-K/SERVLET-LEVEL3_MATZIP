@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/") // "/"만 설정해줄 경우, WebContent 폴더에 있는 여타 다른 파일로의 접근이 불가능해짐
+@WebServlet("/") // "/"만 설정해줄 경우, .xml파일을 수정하기 전까지는 WebContent 폴더에 있는 여타 다른 파일로의 접근이 불가능해짐
 public class Container extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

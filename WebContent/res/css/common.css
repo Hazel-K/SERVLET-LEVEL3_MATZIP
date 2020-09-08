@@ -24,3 +24,7 @@ html, body {
 .frm {
 	border: 1px solid #bdc3c7;
 }
+
+.msg {
+	color: red;
+}

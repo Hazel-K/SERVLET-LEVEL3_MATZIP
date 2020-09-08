@@ -44,6 +44,11 @@ public class HandlerMapper {
 				return userCon.login(request);
 			// user/login으로 접속하는 경우
 
+			// user/loginProc으로 접속하는 경우
+			case "loginProc":
+				return userCon.loginProc(request);
+			// user/loginProc으로 접속하는 경우
+
 			// user/join으로 접속하는 경우
 			case "join":
 				return userCon.join(request);
@@ -53,14 +58,31 @@ public class HandlerMapper {
 			case "joinProc":
 				return userCon.joinProc(request);
 			// user/joinProc으로 접속하는 경우
-
+				
 			}
 			// user/*으로 접속을 돕는 스위치문 <끝>
+		// user로 시작하는 경우 스위치문 <끝>
+
+		// restaurant로 시작하는 경우 스위치문 <시작>
+		case ViewRef.URI_RESTAURANT:
+			
+			// restaurant/*로 접속을 돕는 스위치문 <시작>
+			switch(uriArr[2]) {
+			
+			// restaurant/resMap으로 접속하는 경우
+			case "resMap":
+				request.setAttribute(Const.TITLE, "식당 지도");
+				request.setAttribute(Const.VIEW, "/restaurant/resMap");
+				return ViewRef.TYPE_1;
+			// restaurant/resMap으로 접속하는 경우
+			
+			// restaurant/*로 접속을 돕는 스위치문 <끝>
+			}
+		// restaurant로 시작하는 경우 스위치문 <끝>
 
 		}
-		// user로 시작하는 경우 스위치문 <끝>
 		// 페이지 접속기 <끝>
-
+		
 		// 이것도 저것도 아닌 경우 <시작>
 		return "404"; // 에러 코드 반환
 		// 이것도 저것도 아닌 경우 <끝>
