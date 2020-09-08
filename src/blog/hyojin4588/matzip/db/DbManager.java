@@ -17,7 +17,7 @@ public class DbManager {
 	
 	public static Connection getCon() throws Exception {
 		// mysql DB 접속
-		String url = "jdbc:mysql://127.0.0.1:3306/matzip";
+		String url = "jdbc:mysql://127.0.0.1:3306/matzip"; // ip부분을 localhost로 대체 가능
 		String user = "root";
 		String pw = "koreait2020";
 		String className = "com.mysql.cj.jdbc.Driver"; // library path
