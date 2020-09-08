@@ -24,7 +24,7 @@ public class DbManager {
 		
 		Class.forName(className);
 		Connection con = DriverManager.getConnection(url, user, pw);
-		System.out.println("DB 연결 완료");
+//		System.out.println("DB 연결 완료");
 		
 		return con;
 		// mysql DB 접속
