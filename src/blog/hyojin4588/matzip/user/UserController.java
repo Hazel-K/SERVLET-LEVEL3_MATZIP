@@ -24,7 +24,7 @@ public class UserController {
 	public String joinProc(HttpServletRequest request) {
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
-		String nm = request.getParameter("user_pw");
+		String nm = request.getParameter("nm");
 		
 		return "redirect:/user/login";
 	}
