@@ -12,7 +12,7 @@
 				<input type="password" name="user_pw" placeholder="비밀번호">
 			</div>
 			<div>
-				<button onclick="goToJoin()">회원가입</button><input type="submit" value="로그인">
+				<input type="submit" value="로그인"><button onclick="goToJoin()">회원가입</button>
 			</div>
 		</form>
 	</div>
