@@ -12,8 +12,14 @@
 				<input type="password" name="user_pw" placeholder="비밀번호">
 			</div>
 			<div>
-				<input type="submit" value="로그인">
+				<button onclick="goToJoin()">회원가입</button><input type="submit" value="로그인">
 			</div>
 		</form>
 	</div>
 </div>
+<script>
+	function goToJoin() {
+		event.preventDefault()
+		location.href='/user/join'
+	}
+</script>
