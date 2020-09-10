@@ -33,7 +33,12 @@
                     <span class="pointer">회원정보수정</span>
                 </div>
             </div>
-            <div>메뉴들</div>
+            <div>
+            	<ul id="header_menus">
+            		<li>등록</li>
+            		<li>찜</li>
+            	</ul>
+            </div>
         </header>
         <section class="sWrapper">
             <article class="arWrapper">
