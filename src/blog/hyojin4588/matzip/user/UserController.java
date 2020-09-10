@@ -1,7 +1,9 @@
 package blog.hyojin4588.matzip.user;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
 import blog.hyojin4588.matzip.ViewRef;
 import blog.hyojin4588.matzip.vo.UserVO;
@@ -76,6 +78,10 @@ public class UserController {
 		
 		// 오류처리 스위치문 <시작>
 		if (result == 1) {
+			// 로그인 정보 세션에 저장 <시작>
+			HttpSession hs = request.getSession();
+			hs.setAttribute(Const.LOGIN_USER, param);
+			// 로그인 정보 세션에 저장 <끝>
 			return "redirect:/restaurant/resMap"; // 로그인 성공
 		} else {
 			return "redirect:/user/login?error=" + result; //로그인 실패

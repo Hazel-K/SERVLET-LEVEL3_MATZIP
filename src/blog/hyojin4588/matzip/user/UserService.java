@@ -35,6 +35,16 @@ public class UserService {
 			String encryptPw = SecurityUtils.getEncrypt(param.getUser_pw(), salt);
 			
 			if(encryptPw.equals(dbResult.getUser_pw())) {
+				// 세션에 넣을 로그인 정보 설정 <시작>
+				param.setUser_pw(null); // 비밀번호 초기화
+				
+//				param = dbResult; // 이런 식으로 하면 안됨. reference변수이기 때문에 메소드가 끝난 이후 param에 박힌 dbResult에 해당하는 주소값을 불러올 수 없음
+				param.setI_user(dbResult.getI_user());
+				param.setUser_id(dbResult.getUser_id());
+				param.setNm(dbResult.getNm());
+				param.setProfile_img(dbResult.getProfile_img());
+				// 세션에 넣을 로그인 정보 설정 <끝>
+				
 				result = 1; // 로그인 성공
 			} else {
 				result = 3; // 비밀번호 틀림
