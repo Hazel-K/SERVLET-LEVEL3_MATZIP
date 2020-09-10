@@ -3,7 +3,6 @@ package blog.hyojin4588.matzip.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
 import blog.hyojin4588.matzip.ViewRef;
 import blog.hyojin4588.matzip.vo.UserVO;
@@ -89,6 +88,7 @@ public class UserController {
 		// 오류처리 스위치문 <끝>
 	}
 	
+	// /user/ajaxIdChk 경로로 접속 시 해당 메소드 실행
 	public String ajaxIdChk(HttpServletRequest request) {
 		// Parameter 추출 후 VO에 세팅 <시작>
 		String user_id = request.getParameter("user_id");
@@ -100,5 +100,15 @@ public class UserController {
 		int result = service.login(param); // param의 정보와 db 대조 후 성공하면 1 리턴
 		
 		return String.format("ajax:{\"result\": %s}", result);
+	}
+	
+	// /user/logout 경로로 접속 시 해당 메소드 실행
+	public String logout(HttpServletRequest request) {
+		// Parameter 추출 후 세션 정보를 초기화 <시작>
+		HttpSession hs = request.getSession();
+		hs.invalidate(); // 세션을 초기화
+		// Parameter 추출 후 세션 정보를 초기화 <끝>
+		
+		return "redirect:/user/login";
 	}
 }

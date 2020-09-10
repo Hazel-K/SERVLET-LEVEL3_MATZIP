@@ -70,6 +70,11 @@ public class HandlerMapper {
 			case "ajaxIdChk":
 				return userCon.ajaxIdChk(request);
 			// user/ajaxIdChk으로 접속하는 경우
+				
+			// user/logout으로 접속하는 경우
+			case "logout":
+				return userCon.logout(request);
+			// user/logout으로 접속하는 경우
 
 			}
 			// user/*으로 접속을 돕는 스위치문 <끝>
