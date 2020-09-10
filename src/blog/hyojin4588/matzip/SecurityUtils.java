@@ -6,10 +6,12 @@ import java.util.Random;
 
 public class SecurityUtils {
 	
+	// 비밀번호와 salt를 조합한 최종 비밀번호를 리턴하는 메소드
 	public static String getEncrypt(String source, String salt) {
         return getEncrypt(source, salt.getBytes());
     }
     
+	// 비밀번호를 16진수를 이용하여 암호화시키는 메소드
     public static String getEncrypt(String source, byte[] salt) {
         String result = "";
         
@@ -38,6 +40,7 @@ public class SecurityUtils {
         return result;
     }
 
+    // 비밀번호와 함께 사용하는 salt를 생성하는 메소드
 	public static String generateSalt() {
 		Random random = new Random(); // 난수를 지정하는 랜덤 객체 생성
 		byte[] salt = new byte[8]; // 크기가 8인 byte 배열 생성
