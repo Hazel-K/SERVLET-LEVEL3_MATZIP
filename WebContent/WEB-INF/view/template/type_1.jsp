@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,27 @@
     <div id="bgTag"></div>
     <main class="container">
         <header class="hWrapper">
-            머리
+            <div>그림</div>
+            <div id="containerPImg">
+                <div>
+                <c:choose>
+                    <c:when test="${loginUser.profile_img != null}">
+                        <img class="loginUserImg" src="/res/img/user/${loginUser.i_user}/${loginUser.profile_img}" class="pImg">
+                    </c:when>
+                    <c:otherwise>
+                        <img class="loginUserImg" src="/res/img/default_profile.jpg" class="pImg">
+                    </c:otherwise>
+                </c:choose>
+                </div>
+                <div id="printUserMsg">
+                    ${loginUser.nm}님, 환영합니다.
+                </div>
+                <div>
+                    <span class="pointer">로그아웃</span>
+                    <span class="pointer">회원정보수정</span>
+                </div>
+            </div>
+            <div>메뉴들</div>
         </header>
         <section class="sWrapper">
             <article class="arWrapper">

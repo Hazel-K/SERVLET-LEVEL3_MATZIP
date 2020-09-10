@@ -57,6 +57,10 @@ public class Container extends HttpServlet {
 			String prefix = temp.substring(0, temp.indexOf(":"));
 			String value = temp.substring(temp.indexOf(":") + 1);
 			
+			// 테스트 케이스
+//			System.out.println("rediect 주소 : " + value);
+			// 테스트 케이스
+			
 			if ("redirect".equals(prefix)) {
 				// redirect:라는 글자가 있다면 redirect:라고 적힌 다음 경로를 추출해 그 페이지로 이동 <시작>
 				response.sendRedirect(value);
