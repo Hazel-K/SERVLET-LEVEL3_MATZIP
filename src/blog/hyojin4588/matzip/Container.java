@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.protocol.Security;
+
 @WebServlet("/") // "/"만 설정해줄 경우, .xml파일을 수정하기 전까지는 WebContent 폴더에 있는 여타 다른 파일로의 접근이 불가능해짐
 public class Container extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,7 +47,21 @@ public class Container extends HttpServlet {
 
 	private void proc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = mapper.nav(request); // URI 주소 받기
-
+		
+		// 로그인 정보 없으면 로그인으로 돌려보내는 메소드 <시작>
+		String routerCheckResult = LoginChkInterceptor.routerChk(request);
+		
+		// 테스트 케이스
+//		System.out.println("RCR value : " + routerCheckResult);
+//		System.out.println("RCR location : " + String.format("/WEB-INF/view%s.jsp", routerCheckResult));
+		// 테스트 케이스
+		
+		if(routerCheckResult != null) {
+			response.sendRedirect(routerCheckResult);
+			return;
+		}
+		// 로그인 정보 없으면 로그인으로 돌려보내는 메소드 <끝>
+		
 		// 테스트 케이스
 //		System.out.println("temp : " + temp); // temp값 확인
 //		System.out.println("redirect:/user/login".substring("redirect:/user/login".indexOf("/"))); // subString의 기능 확인

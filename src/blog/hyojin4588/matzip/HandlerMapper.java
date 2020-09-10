@@ -31,7 +31,7 @@ public class HandlerMapper {
 //			System.out.println(String.format("uriArr[%d] : %s", i, uriArr[i]));  
 //		}
 		// uriArr 안에 있는 값들을 확인하는 for문 <끝>
-
+		
 		// http://location:8090/(컨트롤러 구분)/(호출할 메소드) 구조이므로, 길이는 항상 3이상이어야 한다.
 		if (uriArr.length < 3) {
 			return "405"; // 에러 코드 반환

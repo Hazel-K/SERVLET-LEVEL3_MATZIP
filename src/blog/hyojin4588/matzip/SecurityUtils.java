@@ -4,6 +4,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import blog.hyojin4588.matzip.vo.UserVO;
+
 public class SecurityUtils {
 	
 	// 비밀번호와 salt를 조합한 최종 비밀번호를 리턴하는 메소드
@@ -57,4 +62,11 @@ public class SecurityUtils {
 	}
 
 // 출처: https://javannspring.tistory.com/105 [JiGyeong's study room]
+	
+	// 로그인 정보가 있는지를 확인하는 메소드
+	public static boolean isLogout(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
+		return loginUser == null;
+	}
 }
