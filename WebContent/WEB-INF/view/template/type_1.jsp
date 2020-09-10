@@ -29,7 +29,7 @@
                     ${loginUser.nm}님, 환영합니다.
                 </div>
                 <div>
-                    <span class="pointer">로그아웃</span>
+                    <span class="pointer" onclick="location.href='/user/logout'">로그아웃</span>
                     <span class="pointer">회원정보수정</span>
                 </div>
             </div>
@@ -45,7 +45,9 @@
             </aside>
         </section>
         <footer class="fWrapper">
-            회사
+        	<div id="footerTitle">BACKEND PROJECT HEZEL_K Co., Ltd.</div>
+            <div id="footerAddr">무슨광역시 무슨로 044-01</div>
+            <div id="footerCopy">ⓒCOPYLEFT Reserved Everyone</div>
         </footer>
     </main>
 </body>

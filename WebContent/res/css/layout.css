@@ -15,7 +15,7 @@
 	margin: 0 auto;
 	width: 83%;
 	min-width: 663px;
-	height: 40vh;
+	height: 25vh;
 	background-color: rgb(189, 255, 243);
 	display: grid;
     grid-template-rows: 1fr auto auto;
@@ -34,6 +34,7 @@
 .loginUserImg {
 	width: 30px;
 	height: 30px;
+	border-radius: 45%;
 }
 
 .pointer {
@@ -70,4 +71,18 @@
 	background-color: rgba(0, 0, 0, 0.8);
 	color: white;
 	font-weight: 800;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.fWrapper div {
+	margin: 3px 0px;
+}
+
+#footerTitle {
+	font-size: 1.5em;
+	margin-bottom: 15px;
 }
