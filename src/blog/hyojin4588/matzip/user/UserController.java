@@ -58,7 +58,7 @@ public class UserController {
 		param.setNm(nm);
 		// Parameter 추출 후 VO에 세팅 <끝>
 		
-		int result = service.join(param);
+		int result = service.join(param);  // param의 정보와 db 대조 후 성공하면 1 리턴
 		
 		return "redirect:/user/login";
 	}
@@ -90,12 +90,14 @@ public class UserController {
 	}
 	
 	public String ajaxIdChk(HttpServletRequest request) {
+		// Parameter 추출 후 VO에 세팅 <시작>
 		String user_id = request.getParameter("user_id");
 		UserVO param = new UserVO();
 		param.setUser_id(user_id);
 		param.setUser_pw("");
+		// Parameter 추출 후 VO에 세팅 <끝>
 		
-		int result = service.login(param);
+		int result = service.login(param); // param의 정보와 db 대조 후 성공하면 1 리턴
 		
 		return String.format("ajax:{\"result\": %s}", result);
 	}

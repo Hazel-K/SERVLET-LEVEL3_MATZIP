@@ -1,0 +1,5 @@
+DATABASE와 관련된 jar 파일은 TOMCAT 라이브러리에 저장할 것.
+
+현재 저장되어 있는 라이브러리:
+mysql-connector-java-8.0.21.jar // mariaDB, mySQL 관련 라이브러리
+ojdbc6.jar // ORACLE 관련 라이브러리
