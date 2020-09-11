@@ -20,7 +20,9 @@
 	grid-template-areas: 
 		"grid1 ."
 		"grid2 grid3"
+		"grid6 ."
 		"grid4 ."
+		"grid5 ."
 	;
 }
 
@@ -38,4 +40,14 @@
 
 #regGrid4 {
 	grid-area: grid4;
+	justify-self: flex-end;
+}
+
+#regGrid5 {
+	grid-area: grid5;
+	justify-self: flex-end;
+}
+
+#regGrid6 {
+	grid-area: grid6;
 }

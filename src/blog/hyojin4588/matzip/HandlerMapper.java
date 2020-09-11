@@ -96,10 +96,19 @@ public class HandlerMapper {
 				return resCon.resReg(request);
 			// restaurant/resReg로 접속하는 경우
 			
-			// restaurant/*로 접속을 돕는 스위치문 <끝>
+			// restaurant/resProc로 접속하는 경우
+			case "resRegProc":
+				return resCon.resRegProc(request);
+			// restaurant/resProc로 접속하는 경우
+				
+			// restaurant/ajaxResReg로 접속하는 경우
+			case "ajaxResReg":
+				return resCon.ajaxResReg(request);
 			}
-		// restaurant로 시작하는 경우 스위치문 <끝>
+			// restaurant/ajaxResReg로 접속하는 경우
+			// restaurant/*로 접속을 돕는 스위치문 <끝>
 
+		// restaurant로 시작하는 경우 스위치문 <끝>
 		}
 		// 페이지 접속기 <끝>
 		

@@ -1,10 +1,14 @@
 package blog.hyojin4588.matzip.restaurant;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import blog.hyojin4588.matzip.CommonDAO;
+import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
 import blog.hyojin4588.matzip.ViewRef;
+import blog.hyojin4588.matzip.vo.RestaurantVO;
+import blog.hyojin4588.matzip.vo.UserVO;
 
 public class restaurantController {
 	
@@ -30,6 +34,74 @@ public class restaurantController {
 		request.setAttribute(Const.VIEW, "restaurant/resReg");
 		
 		return ViewRef.TYPE_1;
+	}
+	
+	public String resRegProc(HttpServletRequest request) {
+		// 속성 추출 및 vo 세팅 <시작>
+		String nm = request.getParameter("nm");
+		String addr = request.getParameter("addr");
+		String strLat = request.getParameter("lat"); // double로
+		double lat = CommonUtils.parseStringToDouble(strLat);
+		String strLng = request.getParameter("lng"); // double로
+		double lng = CommonUtils.parseStringToDouble(strLng);
+		
+		// 테스트 케이스
+//		System.out.println("strLat : " + strLat + "\nlat" + lat);
+//		System.out.println("strLng : " + strLng + "\nlng" + lng);
+		// 테스트 케이스
+		
+		String strCd_category = request.getParameter("cd_category"); // int로
+		int cd_category = CommonUtils.parseStringToInt(strCd_category);
+		
+		HttpSession hs = request.getSession();
+		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
+		int i_user = loginUser.getI_user();
+		
+		RestaurantVO param = new RestaurantVO();
+		param.setNm(nm);
+		param.setAddr(addr);
+		param.setLat(lat);
+		param.setLng(lng);
+		param.setCd_category(cd_category);
+		param.setI_user(i_user);
+		// 속성 추출 및 VO 세팅 <끝>
+		
+		int result = service.resReg(param); // 성공적으로 수행 시 1 리턴
+		
+		if (result == 1) {
+			return "redirect:/restaurant/resReg";
+		}
+		
+		return "404";
+	}
+	
+	// 사용하지 않는 메소드
+	public String ajaxResReg(HttpServletRequest request) {
+		// 속성 추출 및 vo 세팅 <시작>
+		String nm = request.getParameter("nm");
+		String addr = request.getParameter("addr");
+		String strLat = request.getParameter("lat"); // double로
+		double lat = CommonUtils.parseStringToDouble(strLat);
+		String strLng = request.getParameter("lng"); // double로
+		double lng = CommonUtils.parseStringToDouble(strLng);
+		String strCd_category = request.getParameter("cd_category"); // int로
+		int cd_category = CommonUtils.parseStringToInt(strCd_category);
+		
+		HttpSession hs = request.getSession();
+		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
+		int i_user = loginUser.getI_user();
+		
+		RestaurantVO param = new RestaurantVO();
+		param.setNm(nm);
+		param.setAddr(addr);
+		param.setLat(lat);
+		param.setLng(lng);
+		param.setCd_category(cd_category);
+		param.setI_user(i_user);
+		// 속성 추출 및 VO 세팅 <끝>
+		int result = service.resReg(param); // 성공적으로 수행 시 1 리턴
+		
+		return String.format("ajax:{\"result\": %s}", result);
 	}
 
 }

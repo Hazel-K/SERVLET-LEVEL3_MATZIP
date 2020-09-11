@@ -35,8 +35,9 @@
             </div>
             <div>
             	<ul id="header_menus">
-            		<li class="headMenu" onclick="location.href='/restaurant/resReg'">등록</li>
-            		<li class="headMenu" onclick="location.href='/user/resFavorite'">찜</li>
+            		<li onclick="location.href='/restaurant/resMap'">홈</li>
+            		<li onclick="location.href='/restaurant/resReg'">등록</li>
+            		<li onclick="location.href='/user/resFavorite'">찜</li>
             	</ul>
             </div>
         </header>
