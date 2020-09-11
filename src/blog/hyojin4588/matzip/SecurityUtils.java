@@ -69,4 +69,11 @@ public class SecurityUtils {
 		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
 		return loginUser == null;
 	}
+	
+	// 로그인한 사람의 id번호를 가져오는 메소드
+	public static int getLoginUser(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
+		return loginUser.getI_user();
+	}
 }
