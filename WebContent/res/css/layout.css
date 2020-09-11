@@ -42,6 +42,13 @@
 	display: flex;
 }
 
+#header_menus li {
+	padding: 20px 40px;
+	cursor: pointer;
+	font-size: 2em;
+	font-weight: 600;
+}
+
 .pointer {
 	cursor: pointer;
 }
@@ -60,8 +67,6 @@
 	height: 80vh;
 	background-color: indianred;
 }
-
-.showMap {}
 
 .asWrapper {
 	width: 24%;

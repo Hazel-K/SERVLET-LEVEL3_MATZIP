@@ -12,12 +12,20 @@ public class UserService {
 	}
 	
 	public int join(UserVO param) {
+		// param에 value 세팅 <시작>
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
 		String encryptPw = SecurityUtils.getEncrypt(pw, salt);
+		// param에 value 세팅 <끝>
 		
 		param.setUser_pw(encryptPw);
 		param.setSalt(salt);
+		
+		// 테스트 케이스
+//		System.out.println(pw);
+//		System.out.println(salt);
+//		System.out.println(encryptPw);
+		// 테스트 케이스
 		
 		return dao.join(param);
 	}

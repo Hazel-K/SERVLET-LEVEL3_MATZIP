@@ -90,6 +90,11 @@ public class HandlerMapper {
 			case "resMap":
 				return resCon.resMap(request);
 			// restaurant/resMap으로 접속하는 경우
+				
+			// restaurant/resReg로 접속하는 경우
+			case "resReg":
+				return resCon.resReg(request);
+			// restaurant/resReg로 접속하는 경우
 			
 			// restaurant/*로 접속을 돕는 스위치문 <끝>
 			}

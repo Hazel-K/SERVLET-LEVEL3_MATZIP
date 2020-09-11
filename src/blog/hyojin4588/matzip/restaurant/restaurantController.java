@@ -20,5 +20,14 @@ public class restaurantController {
 		request.setAttribute(Const.VIEW, "/restaurant/resMap");
 		return ViewRef.TYPE_1;
 	}
+	
+	public String resReg(HttpServletRequest request) {
+		request.setAttribute("categoryList", null);
+		
+		request.setAttribute(Const.TITLE, "가게 등록");
+		request.setAttribute(Const.VIEW, "restaurant/resReg");
+		
+		return ViewRef.TYPE_1;
+	}
 
 }
