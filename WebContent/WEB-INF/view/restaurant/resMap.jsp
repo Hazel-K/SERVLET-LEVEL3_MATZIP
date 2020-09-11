@@ -19,8 +19,7 @@
 	
 	// 지도 마커 기능
 	function getRestaurantList() {
-		axios.get('restaurant/ajaxGetList').then(function(res)) {
-			console.log(res.data)
+		axios.get('restaurant/ajaxGetList').then(function(res) {
 			
 			res.data.forEach(function(item) {
 				const na = {
@@ -33,7 +32,7 @@
 				
 				marker.setMap(map)
 			})
-		}
+		})
 	}
 	// 지도 마커 기능
 </script>
