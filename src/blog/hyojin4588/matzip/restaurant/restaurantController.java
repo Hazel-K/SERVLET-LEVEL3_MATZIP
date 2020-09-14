@@ -1,19 +1,13 @@
 package blog.hyojin4588.matzip.restaurant;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import blog.hyojin4588.matzip.CommonDAO;
 import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
 import blog.hyojin4588.matzip.SecurityUtils;
 import blog.hyojin4588.matzip.ViewRef;
-import blog.hyojin4588.matzip.vo.RestaurantDomain;
 import blog.hyojin4588.matzip.vo.RestaurantVO;
-import blog.hyojin4588.matzip.vo.UserVO;
 
 public class restaurantController {
 	
@@ -107,6 +101,6 @@ public class restaurantController {
 	
 	// /restaurant/ 으로 접속시 시작되는 메소드
 	public String ajaxGetList(HttpServletRequest request) {
-		return "ajax" + service.getResList();
+		return "ajax:" + service.getResList();
 	}
 }

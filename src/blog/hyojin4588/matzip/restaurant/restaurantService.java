@@ -22,6 +22,7 @@ public class restaurantService {
 	
 	public String getResList() {
 		List<RestaurantDomain> list = new ArrayList<RestaurantDomain>();
+		list = dao.selResList();
 		Gson gson = new Gson();
 		return gson.toJson(list);
 	}
