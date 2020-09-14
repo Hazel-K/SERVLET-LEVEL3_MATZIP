@@ -26,5 +26,9 @@ public class restaurantService {
 		Gson gson = new Gson();
 		return gson.toJson(list);
 	}
+	
+	public RestaurantDomain getDetail(RestaurantDomain param) {
+		return dao.selRestaurant(param);
+	}
 
 }

@@ -7,9 +7,9 @@
 .label .center {background: url(https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
 .label .right {background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6bb62151ddeddee6978f9dd897043e8e"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6bb62151ddeddee6978f9dd897043e8e"></script>
 
 <div id="mapContainer"></div>
 
@@ -28,7 +28,7 @@
 	// 지도 마커 기능
 	function getRestaurantList() {
 		axios.get('/restaurant/ajaxGetList').then(function(res) {
-			console.log(res.data);
+//			console.log(res.data);
 
 			res.data.forEach(function(item) {
 				createMarker(item);
@@ -40,40 +40,82 @@
 	
 	// 마커 생성 함수
 	function createMarker(item) {
-		var ctnt = `<div class="label"><span class="left"></span><span class="center">\${item.nm}</span><span class="right"></span></div>`;
-//		console.log(content);
+		var content = document.createElement('div');
+	    content.className = 'label';
+	    var leftSpan = document. createElement('span');
+	    leftSpan.className = 'left';
+	    var rightSpan = document. createElement('span');
+	    rightSpan.className = 'right';
+	    var centerSpan = document. createElement('span');
+	    centerSpan.className = 'center';
+	    centerSpan.innerText = item.nm;
+
+	    content.append(leftSpan);
+	    content.append(centerSpan);
+	    content.append(rightSpan);
 		
 		var mPos = new kakao.maps.LatLng(item.lat, item.lng);
 //		console.log(mPos);
 		
 		var marker = new kakao.maps.CustomOverlay({
 		    position: mPos,
-		    content: ctnt
+		    content: content,
+//		    clickable: true
 		});
 //		console.log(marker);
+
+		addEvent(content, 'click', function() {
+//			console.log('마커 클릭: ' + item.i_rest);
+			moveToDetail(item.i_rest);
+		});
 		
 		marker.setMap(map);
 	}
 	// 마커 생성 함수
+
+	// 마커 클릭 시 이벤트 함수
+	function addEvent(target, type, callback) {
+		 if (target.addEventListener) {
+		    target.addEventListener(type, callback);
+	    } else {
+	        target.attachEvent('on' + type, callback);
+	    }
+	}
+	// 마커 클릭 시 이벤트 함수
+	
+	// 페이지 이동 함수
+	function moveToDetail(i_rest) {
+		location.href = '/restaurant/resDetail?i_rest=' + i_rest;
+	}
+	// 페이지 이동 함수
+	
+	// 마커 클릭 시 이벤트 함수
+	function addEvent(target, type, callback) {
+		if (target.addEventListener) {
+			target.addEventListener(type, callback);
+		} else {
+			target.addEventListener('on' + type, callback);
+		}
+	}
+	// 마커 클릭 시 이벤트 함수
 	
 	// 내 위치로 지도 이동
 	if (navigator.geolocation) {
 		console.log('Geolocation is supported!');
-
+	  
 		var startPos;
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			startPos = pos;
-//			console.log('lat : ' + startPos.coords.latitude);
-//			console.log('lng : ' + startPos.coords.longitude);
-			
+		startPos = pos			  
+//		console.log('lat : ' + startPos.coords.latitude)
+//		console.log('lng : ' + startPos.coords.longitude)	    
 			if(map) {
-				var moveLatLng =  new kakao.maps.LatLng(startPos.coords.latitude, startPos.coords.longitude);
-				map.panTo(moveLatLng);
+			    var moveLatLon = new kakao.maps.LatLng(startPos.coords.latitude, startPos.coords.longitude)
+			    map.panTo(moveLatLon)
 			}
-		});
-
+    	});
+	  
 	} else {
-		console.log('Geolocation is not supported for this Browser/OS.');
+	  console.log('Geolocation is not supported for this Browser/OS.');
 	}
 	// 내 위치로 지도 이동
 </script>

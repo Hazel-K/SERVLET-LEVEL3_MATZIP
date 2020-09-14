@@ -112,6 +112,11 @@ public class HandlerMapper {
 				return resCon.ajaxGetList(request);
 			// restaurant/ajaxGetList로 접속하는 경우
 				
+			// restaurant/resDetail로 접속하는 경우
+			case "resDetail":
+				return resCon.resDetail(request);
+			// restaurant/resDetail로 접속하는 경우
+				
 			}
 			// restaurant/*로 접속을 돕는 스위치문 <끝>
 			// restaurant로 시작하는 경우 스위치문 <끝>

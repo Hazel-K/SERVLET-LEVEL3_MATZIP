@@ -57,3 +57,16 @@ CREATE TABLE t_restaurant_menu(
 	FOREIGN KEY(i_rest) REFERENCES t_restaurant(i_rest)
 );
 
+SELECT A.i_rest, A.nm, A.addr, A.i_user, A.hits,
+B.val AS cd_category_nm, IFNULL(C.cnt, 0) AS cnt
+FROM t_restaurant A
+LEFT JOIN c_code_d B
+ON A.cd_category = B.cd
+AND B.i_m = 1
+LEFT JOIN (
+	SELECT i_rest, COUNT(i_rest) AS cnt
+	FROM t_restaurant_recommend_menu
+	GROUP BY i_rest
+) C
+ON A.i_rest = C.i_rest
+WHERE A.i_rest = 1;

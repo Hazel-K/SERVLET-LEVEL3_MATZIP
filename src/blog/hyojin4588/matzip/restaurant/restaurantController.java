@@ -7,6 +7,7 @@ import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
 import blog.hyojin4588.matzip.SecurityUtils;
 import blog.hyojin4588.matzip.ViewRef;
+import blog.hyojin4588.matzip.vo.RestaurantDomain;
 import blog.hyojin4588.matzip.vo.RestaurantVO;
 
 public class restaurantController {
@@ -20,7 +21,7 @@ public class restaurantController {
 	// /restaurant/resMap 으로 접속 시 해당 메소드 실행
 	public String resMap(HttpServletRequest request) {
 		request.setAttribute(Const.TITLE, "식당 지도");
-		request.setAttribute(Const.VIEW, "/restaurant/resMap");
+		request.setAttribute(Const.VIEW, "restaurant/resMap");
 		return ViewRef.TYPE_1;
 	}
 	
@@ -68,6 +69,23 @@ public class restaurantController {
 		}
 		
 		return "404";
+	}
+	
+	// /restaurant/resDetail 으로 접속 시 해당 메소드 실행
+	public String resDetail(HttpServletRequest request) {
+		// 속성 추출 및 vo 세팅 <시작>
+		String strI_rest = request.getParameter("i_rest");
+		int i_rest = CommonUtils.parseStringToInt(strI_rest);
+		// 속성 추출 및 vo 세팅 <끝>
+		
+		RestaurantDomain param = new RestaurantDomain();
+		param.setI_rest(i_rest);
+		
+		request.setAttribute("data", service.getDetail(param));
+		
+		request.setAttribute(Const.TITLE, "식당 보기");
+		request.setAttribute(Const.VIEW, "restaurant/resDetail");
+		return ViewRef.TYPE_1;
 	}
 	
 	// 사용하지 않는 메소드
