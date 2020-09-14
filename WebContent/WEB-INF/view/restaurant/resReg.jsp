@@ -101,8 +101,8 @@
 			geocoder.addressSearch(addrStr, function(result, status) {
 				if(status === kakao.maps.services.Status.OK) {
 //					console.log(result)
-					frm.lat.value = result[0].x
-					frm.lng.value = result[0].y
+					frm.lat.value = result[0].y
+					frm.lng.value = result[0].x
 					
 					if(frm.lat.value != '0' && frm.lng.value != '0') {
 						regGrid6.innerText = '등록할 수 있는 주소입니다.'
