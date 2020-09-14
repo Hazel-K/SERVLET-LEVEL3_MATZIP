@@ -88,6 +88,28 @@ public class restaurantController {
 		return ViewRef.TYPE_1;
 	}
 	
+	public String addRecMenusProc(HttpServletRequest request) {
+		// 속성 추출 및 vo 세팅 <시작>
+		String uploads = request.getRealPath(path);
+		String strI_rest = request.getParameter("i_rest");
+		int i_rest = CommonUtils.parseStringToInt(strI_rest);
+		
+		String[] menu_nmArr = request.getParameterValues("menu_nm"); // 배열을 받을 경우 Values 추가
+		String[] menu_priceArr = request.getParameterValues("menu_price"); // 배열을 받을 경우 Values 추가
+		
+		// type = file은 getParameter 계열로 받을 수 없기 때문에 다른 방식으로 가져와야 함
+		
+		// type = file은 getParameter 계열로 받을 수 없기 때문에 다른 방식으로 가져와야 함
+		
+		// 테스트 케이스
+		for(int i = 0; i < menu_nmArr.length; i++) {
+			System.out.println(i + ":" + menu_nmArr[i] + ", " + menu_priceArr[i]);
+		}
+		// 테스트 케이스
+		// 속성 추출 및 vo 세팅 <끝>
+		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
+	}
+	
 	// 사용하지 않는 메소드
 //	public String ajaxResReg(HttpServletRequest request) {
 //		// 속성 추출 및 vo 세팅 <시작>

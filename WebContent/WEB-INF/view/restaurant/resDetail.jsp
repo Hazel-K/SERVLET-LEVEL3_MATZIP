@@ -6,6 +6,20 @@
 		<div>
 			<a href="/restaurant/resMod"><button>수정</button></a>
 			<button onclick="isDel()">삭제</button>
+			<!-- 가게 기본 정보 등록창 -->
+			<form action="/restaurant/addRecMenusProc" id="recFrm" enctype="multipart/form-data" method="POST">
+        		<div><button type="button" onclick="addRecMenu()">메뉴 추가</button></div>
+        		<input type="hidden" name="i_rest" value="${data.i_rest}">
+        		<div id="recItem">
+            		메뉴: <input type="text" name="menu_nm">
+		            가격: <input type="number" name="menu_price">
+		            사진: <input type="file" name="menu_pic">
+		        </div>
+        		<div>
+        			<input type="submit" value="등록">
+        		</div>
+    		</form>
+    		<!-- 가게 기본 정보 등록창 -->
 		</div>
 	</c:if>
 	<div>가게 사진들</div>
@@ -40,8 +54,28 @@
 	</div>
 </div>
 <script>
+	function addRecMenu() {
+	    var div = document.createElement('div');
+	
+    	var inputNm = document.createElement('input');
+	    inputNm.setAttribute("type", "text");
+	    var inputPrice = document.createElement('input');
+	    inputPrice.setAttribute("type", "number");
+	    var inputPic = document.createElement('input');
+	    inputPic.setAttribute("type", "file");
+
+	    div.append(' 메뉴: ');
+	    div.append(inputNm);
+	    div.append(' 가격: ');
+	    div.append(inputPrice);
+	    div.append(' 사진: ');
+	    div.append(inputPic);
+
+	    recItem.append(div);
+	}
+
 	function isDel() {
-		is(confirm('삭제하시겠습니까?')) {
+		if(confirm('삭제하시겠습니까?')) {
 			location.href = '/restaurant/resDel?i_rest=${data.i_rest}';
 		}
 	}

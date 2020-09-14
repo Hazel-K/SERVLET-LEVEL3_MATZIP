@@ -1,9 +1,18 @@
+CREATE TABLE t_user_favorite(
+	i_rest INT UNSIGNED,
+	i_user INT UNSIGNED,
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY(i_rest, i_user),
+	FOREIGN KEY(i_rest) REFERENCES t_restaurant(i_rest),
+	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
+);
+
 CREATE TABLE t_user(
 	i_user INT unsigned PRIMARY KEY AUTO_INCREMENT,
-	user_id varchar(30) NOT NULL UNIQUE,
-	user_pw varchar(70) NOT NULL,
+	user_id VARCHAR(30) NOT NULL UNIQUE,
+	user_pw VARCHAR(70) NOT NULL,
 	salt VARCHAR(30) NOT NULL,
-	nm       varchar(5) NOT NULL,
+	nm       VARCHAR(5) NOT NULL,
 	profile_img VARCHAR(50),
 	r_dt DATETIME DEFAULT NOW(),
 	m_dt DATETIME DEFAULT NOW()
@@ -65,7 +74,7 @@ ON A.cd_category = B.cd
 AND B.i_m = 1
 LEFT JOIN (
 	SELECT i_rest, COUNT(i_rest) AS cnt
-	FROM t_restaurant_recommend_menu
+	FROM t_user_favorite
 	GROUP BY i_rest
 ) C
 ON A.i_rest = C.i_rest
