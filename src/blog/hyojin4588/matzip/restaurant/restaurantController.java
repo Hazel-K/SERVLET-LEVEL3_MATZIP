@@ -1,6 +1,11 @@
 package blog.hyojin4588.matzip.restaurant;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import blog.hyojin4588.matzip.CommonDAO;
 import blog.hyojin4588.matzip.CommonUtils;
@@ -89,25 +94,36 @@ public class restaurantController {
 	}
 	
 	public String addRecMenusProc(HttpServletRequest request) {
-		// 속성 추출 및 vo 세팅 <시작>
-		String uploads = request.getRealPath(path);
-		String strI_rest = request.getParameter("i_rest");
-		int i_rest = CommonUtils.parseStringToInt(strI_rest);
+		// 변수 지정 <시작>
+		@SuppressWarnings("deprecation")
+		String uploads = request.getRealPath("/res/img");
+		MultipartRequest multi = null;
+		String strI_rest = null;
+		String[] menu_nmArr = null;
+		String[] menu_priceArr = null;
+		// 변수 지정 <끝>
 		
-		String[] menu_nmArr = request.getParameterValues("menu_nm"); // 배열을 받을 경우 Values 추가
-		String[] menu_priceArr = request.getParameterValues("menu_price"); // 배열을 받을 경우 Values 추가
-		
-		// type = file은 getParameter 계열로 받을 수 없기 때문에 다른 방식으로 가져와야 함
-		
-		// type = file은 getParameter 계열로 받을 수 없기 때문에 다른 방식으로 가져와야 함
+		// 여러 파라미터를 한 번에 받아올때 사용하는 방식
+		try {
+			multi = new MultipartRequest(request, uploads,5*1024*1024,"UTF-8",new DefaultFileRenamePolicy());
+			strI_rest = multi.getParameter("i_rest");
+			menu_nmArr = multi.getParameterValues("menu_nm");
+			menu_priceArr = multi.getParameterValues("menu_price");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 여러 파라미터를 한 번에 받아올때 사용하는 방식
 		
 		// 테스트 케이스
-		for(int i = 0; i < menu_nmArr.length; i++) {
-			System.out.println(i + ":" + menu_nmArr[i] + ", " + menu_priceArr[i]);
+		if(menu_nmArr != null && menu_priceArr != null) {
+			for(int i=0; i<menu_nmArr.length; i++) {
+				System.out.println(i + ":" + menu_nmArr[i] + ", " + menu_priceArr[i]);
+			}	
 		}
 		// 테스트 케이스
-		// 속성 추출 및 vo 세팅 <끝>
-		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
+		
+		return "redirect:/restaurant/restDetail?i_rest=" + strI_rest;
 	}
 	
 	// 사용하지 않는 메소드
