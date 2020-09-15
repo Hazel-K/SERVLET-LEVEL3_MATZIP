@@ -109,6 +109,19 @@ public class restaurantController {
 		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
 	}
 	
+	public String ajaxDelRecMenu(HttpServletRequest request) {
+		int i_rest = CommonUtils.getIntParameter("i_rest", request);
+		int seq = CommonUtils.getIntParameter("seq", request);
+		
+		RestaurantRecommendMenuVO param = new RestaurantRecommendMenuVO();
+		param.setI_rest(i_rest);
+		param.setSeq(seq);
+		
+		int result = service.delRecMenu(param);
+		
+		return String.format("ajax:{\"result\": %s}", result);
+	}
+	
 	// 사용하지 않는 메소드
 //	public String ajaxResReg(HttpServletRequest request) {
 //		// 속성 추출 및 vo 세팅 <시작>

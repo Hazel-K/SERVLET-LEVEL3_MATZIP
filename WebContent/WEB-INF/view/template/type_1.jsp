@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/res/css/layout.css">
 <c:if test="${css != null}">
     <c:forEach items="${css}" var="item">

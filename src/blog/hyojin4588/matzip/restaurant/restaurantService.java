@@ -120,5 +120,9 @@ public class restaurantService {
 	public List<RestaurantRecommendMenuVO> selRecList(int i_rest) {
 		return dao.selRecommendMenuList(i_rest);
 	}
+	
+	public int delRecMenu(RestaurantRecommendMenuVO param) {
+		return dao.delRecommendMenuList(param);
+	}
 
 }

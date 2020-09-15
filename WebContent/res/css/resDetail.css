@@ -8,6 +8,7 @@
 .recMenuContainer > .recMenuItem {
 	width: 150px;
 	height: 90px;
+	position: relative;
 }
 
 .recMenuContainer > .recMenuItem > .pic {
@@ -22,4 +23,11 @@
 .recMenuContainer > .recMenuItem > .info {
 	width: 100%;
 	height: 30px;
+}
+
+.recMenuContainer > .recMenuItem > .delIconContainer {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
 }
