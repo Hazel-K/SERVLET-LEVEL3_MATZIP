@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 추천 메뉴 리스트 -->
 <div class="recMenuContainer">
     <c:forEach items="${recommendMenuList}" var="item">
         <div class="recMenuItem" id="recMenuItem_${item.seq}">
@@ -22,6 +23,7 @@
         </div>
     </c:forEach>
 </div>
+<!-- 추천 메뉴 리스트 -->
 <div id="sectionContainer">
 	<c:if test="${loginUser.i_user == data.i_user}">
 		<div>
@@ -71,7 +73,9 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	var idx = 0;
+	var idx = 0; // 메뉴 추가할 때 쓰는거
+	
+	// 메뉴 추가
 	function addRecMenu() {
 	    var div = document.createElement('div');
 	
@@ -96,6 +100,7 @@
 	}
 	addRecMenu();
 	
+	// 메뉴 삭제
 	function delRecMenu(i_rest, seq) {
 		// console.log('i_rest : ' + i_rest);
 		// console.log('seq : ' + seq);
@@ -113,6 +118,7 @@
 		})
 	}
 
+	// 가게 삭제
 	function isDel() {
 		if(confirm('삭제하시겠습니까?')) {
 			location.href = '/restaurant/resDel?i_rest=${data.i_rest}';
