@@ -45,9 +45,6 @@ CREATE TABLE c_code_d(
 	FOREIGN KEY(i_m) REFERENCES c_code_m(i_m)
 );
 
-INSERT INTO c_code_m(i_m, `desc`, cd) VALUES (1, '음식점 카테고리', 'cd_restaurant');
-SELECT * FROM c_code_m;
-
 CREATE TABLE t_restraurant_recommend_menu (
 	i_rest INT UNSIGNED,
 	seq INT UNSIGNED,
@@ -65,6 +62,9 @@ CREATE TABLE t_restaurant_menu(
 	PRIMARY KEY(i_rest, seq),
 	FOREIGN KEY(i_rest) REFERENCES t_restaurant(i_rest)
 );
+
+INSERT INTO c_code_m(i_m, `desc`, cd) VALUES (1, '음식점 카테고리', 'cd_restaurant');
+SELECT * FROM c_code_m;
 
 SELECT A.i_rest, A.nm, A.addr, A.i_user, A.hits,
 B.val AS cd_category_nm, IFNULL(C.cnt, 0) AS cnt

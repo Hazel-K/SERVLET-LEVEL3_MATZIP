@@ -104,6 +104,7 @@
 	function delRecMenu(i_rest, seq) {
 		// console.log('i_rest : ' + i_rest);
 		// console.log('seq : ' + seq);
+		// console.log('fileNm : ' + fileNm);
 		
 		axios.get('/restaurant/ajaxDelRecMenu', {
 			params: {
