@@ -109,6 +109,7 @@ public class restaurantController {
 		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
 	}
 	
+	// /restaurant/ajaxDelRecMenu 으로 접속 시 해당 메소드 실행
 	public String ajaxDelRecMenu(HttpServletRequest request) {
 		int i_rest = CommonUtils.getIntParameter("i_rest", request);
 		int seq = CommonUtils.getIntParameter("seq", request);
