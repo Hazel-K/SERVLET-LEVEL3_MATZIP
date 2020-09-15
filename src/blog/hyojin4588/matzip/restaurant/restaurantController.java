@@ -1,6 +1,9 @@
 package blog.hyojin4588.matzip.restaurant;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +13,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import blog.hyojin4588.matzip.CommonDAO;
 import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
+import blog.hyojin4588.matzip.FileUtils;
 import blog.hyojin4588.matzip.SecurityUtils;
 import blog.hyojin4588.matzip.ViewRef;
 import blog.hyojin4588.matzip.vo.RestaurantDomain;
@@ -93,37 +97,10 @@ public class restaurantController {
 		return ViewRef.TYPE_1;
 	}
 	
+	// /restaurant/addRecMenusProc 으로 접속 시 해당 메소드 실행
 	public String addRecMenusProc(HttpServletRequest request) {
-		// 변수 지정 <시작>
-		@SuppressWarnings("deprecation")
-		String uploads = request.getRealPath("/res/img");
-		MultipartRequest multi = null;
-		String strI_rest = null;
-		String[] menu_nmArr = null;
-		String[] menu_priceArr = null;
-		// 변수 지정 <끝>
-		
-		// 여러 파라미터를 한 번에 받아올때 사용하는 방식
-		try {
-			multi = new MultipartRequest(request, uploads,5*1024*1024,"UTF-8",new DefaultFileRenamePolicy());
-			strI_rest = multi.getParameter("i_rest");
-			menu_nmArr = multi.getParameterValues("menu_nm");
-			menu_priceArr = multi.getParameterValues("menu_price");
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// 여러 파라미터를 한 번에 받아올때 사용하는 방식
-		
-		// 테스트 케이스
-		if(menu_nmArr != null && menu_priceArr != null) {
-			for(int i=0; i<menu_nmArr.length; i++) {
-				System.out.println(i + ":" + menu_nmArr[i] + ", " + menu_priceArr[i]);
-			}	
-		}
-		// 테스트 케이스
-		
-		return "redirect:/restaurant/restDetail?i_rest=" + strI_rest;
+		int i_rest = service.addRecMenus(request);
+		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
 	}
 	
 	// 사용하지 않는 메소드

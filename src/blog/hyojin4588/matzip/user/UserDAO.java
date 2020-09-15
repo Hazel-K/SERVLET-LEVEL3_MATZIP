@@ -49,9 +49,9 @@ public class UserDAO {
 		String sql = " SELECT i_user, user_id, user_pw, salt, nm, profile_img, r_dt, m_dt "
 				+ "FROM t_user WHERE ";
 		if(param.getI_user() > 0) {
-			sql += "i_user = '" + param.getUser_id() + "' ";
+			sql += " i_user = " + param.getI_user();
 		} else if(param.getUser_id() != null && !"".equals(param.getUser_id())) {
-			sql += "user_id = '" + param.getUser_id() + "' ";
+			sql += " user_id = '" + param.getUser_id() + "' ";
 		}
 		// User SELECT SQL문 생성 <끝>
 		

@@ -1,7 +1,11 @@
 package blog.hyojin4588.matzip;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
 
 public class CommonUtils {
 	
@@ -38,5 +42,23 @@ public class CommonUtils {
 		}
 	}
 	// String을 double형으로 변환시키는 메소드
+	
+	// Parameter를 int로 변환하여 가져오는 메소드
+	public static int getIntParameter(String key, HttpServletRequest request) {
+		return parseStringToInt(request.getParameter(key));
+	}
+	public static int getIntParameter(String key, MultipartRequest multi) {
+		return parseStringToInt(multi.getParameter(key));
+	}
+	
+	// Parameter를 double로 변환하여 가져오는 메소드
+	public static double getDoubleParameter(String key, HttpServletRequest request) {
+		return parseStringToDouble(request.getParameter(key));
+	}
+	
+	// Parameter를 File로 변환하여 가져오는 메소드
+	public static File getFileParameter(String key, MultipartRequest multi) {
+		return null;
+	}
 
 }
