@@ -1,22 +1,16 @@
 package blog.hyojin4588.matzip.restaurant;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.UUID;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import blog.hyojin4588.matzip.CommonDAO;
 import blog.hyojin4588.matzip.CommonUtils;
 import blog.hyojin4588.matzip.Const;
-import blog.hyojin4588.matzip.FileUtils;
 import blog.hyojin4588.matzip.SecurityUtils;
 import blog.hyojin4588.matzip.ViewRef;
 import blog.hyojin4588.matzip.vo.RestaurantDomain;
+import blog.hyojin4588.matzip.vo.RestaurantRecommendMenuVO;
 import blog.hyojin4588.matzip.vo.RestaurantVO;
 
 public class restaurantController {
@@ -87,10 +81,21 @@ public class restaurantController {
 		int i_rest = CommonUtils.parseStringToInt(strI_rest);
 		// 속성 추출 및 vo 세팅 <끝>
 		
+		// 가게 주소 및 이름 jsp로 내보내기 <시작>
 		RestaurantDomain param = new RestaurantDomain();
 		param.setI_rest(i_rest);
-		
 		request.setAttribute("data", service.getDetail(param));
+		// 가게 주소 및 이름 jsp로 내보내기 <끝>
+		
+		// 메뉴 정보 및 이미지 jsp로 내보내기 <시작>
+		List<RestaurantRecommendMenuVO> paramList = service.selRecList(i_rest);
+		request.setAttribute("recommendMenuList", paramList);
+		// 메뉴 정보 및 이미지 jsp로 내보내기 <끝>
+		
+		// css 적용할 파일 이름 리스트 내보내기 <시작>
+		String[] cssList = {"resDetail"};
+		request.setAttribute("css", cssList);
+		// css 적용할 파일 이름 리스트 내보내기 <끝>
 		
 		request.setAttribute(Const.TITLE, "식당 보기");
 		request.setAttribute(Const.VIEW, "restaurant/resDetail");
@@ -100,6 +105,7 @@ public class restaurantController {
 	// /restaurant/addRecMenusProc 으로 접속 시 해당 메소드 실행
 	public String addRecMenusProc(HttpServletRequest request) {
 		int i_rest = service.addRecMenus(request);
+		
 		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
 	}
 	

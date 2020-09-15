@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="recMenuContainer">
+        <c:forEach items="${recommendMenuList}" var="item">
+            <div class="recMenuItem">
+                <div class="pic">
+                    <c:if test="${item.menu_pic != null && item.menu_pic != ''}">
+                        <img src="/res/img/restaurant/${data.i_rest}/${item.menu_pic}" alt="">
+                    </c:if>
+                </div>
+                <div class="info">
+                    <div class="nm">${item.menu_nm}</div>
+                    <div class="price">${item.menu_price}</div>
+                </div>
+            </div>
+        </c:forEach>
+</div>
 <div id="sectionContainer">
 	<c:if test="${loginUser.i_user == data.i_user}">
 		<div>
@@ -18,7 +33,6 @@
     		<!-- 가게 기본 정보 등록창 -->
 		</div>
 	</c:if>
-	<div>가게 사진들</div>
 	<div class="restaurant-detail">
 		<div id="detail-header">
 			<div class="restaurant_title_wrap">
