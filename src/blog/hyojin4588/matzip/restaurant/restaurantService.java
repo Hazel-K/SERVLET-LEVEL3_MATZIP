@@ -51,6 +51,9 @@ public class restaurantService {
 		String targetPath = userPath + "/menu";
 		FileUtils.makeFolder(targetPath);
 		
+		RestaurantRecommendMenuVO vo = new RestaurantRecommendMenuVO();
+		vo.setI_rest(i_rest);
+		
 		try {
 			System.out.println(request.getContentType());
 			for(Part part : request.getParts()) {
@@ -60,12 +63,10 @@ public class restaurantService {
 					// 파일 저장
 					String ext = FileUtils.getExt(fileName);
 					String saveFileNm = UUID.randomUUID() + ext;
-					part.write(targetPath + "/" + saveFileNm);
+					part.write(targetPath + "/" + saveFileNm); // "/" 대신 File.seperator 도 가능
 					// 파일 저장
 					
 					// db에 추가
-					RestaurantRecommendMenuVO vo = new RestaurantRecommendMenuVO();
-					vo.setI_rest(i_rest);
 					vo.setMenu_pic(saveFileNm);
 					dao.insMenu(vo);
 					// db에 추가

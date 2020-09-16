@@ -130,6 +130,9 @@ public class HandlerMapper {
 				return resCon.ajaxDelRecMenu(request);
 			// restaurant/ajaxDelRecMenu 으로 접속하는 경우
 				
+			case "ajaxDelMenu":
+				return resCon.ajaxDelMenu(request);
+				
 			}
 			// restaurant/*로 접속을 돕는 스위치문 <끝>
 			// restaurant로 시작하는 경우 스위치문 <끝>

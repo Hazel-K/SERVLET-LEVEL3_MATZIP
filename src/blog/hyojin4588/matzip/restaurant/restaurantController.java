@@ -136,6 +136,11 @@ public class restaurantController {
 		return String.format("ajax:{\"result\": %s}", result);
 	}
 	
+	public String ajaxDelMenu(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	// 사용하지 않는 메소드
 //	public String ajaxResReg(HttpServletRequest request) {
 //		// 속성 추출 및 vo 세팅 <시작>
@@ -169,4 +174,5 @@ public class restaurantController {
 	public String ajaxGetList(HttpServletRequest request) {
 		return "ajax:" + service.getResList();
 	}
+
 }
