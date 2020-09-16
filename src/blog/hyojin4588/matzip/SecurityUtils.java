@@ -71,9 +71,13 @@ public class SecurityUtils {
 	}
 	
 	// 로그인한 사람의 id번호를 가져오는 메소드
-	public static int getLoginUser(HttpServletRequest request) {
+	public static UserVO getLoginUser(HttpServletRequest request) {
 		HttpSession hs = request.getSession();
 		UserVO loginUser = (UserVO)hs.getAttribute(Const.LOGIN_USER);
-		return loginUser.getI_user();
+		return loginUser;
+	}
+	
+	public static int getLoginUserPk(HttpServletRequest request) {
+		return getLoginUser(request).getI_user();
 	}
 }

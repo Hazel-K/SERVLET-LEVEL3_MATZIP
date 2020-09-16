@@ -15,7 +15,7 @@
                 <div class="nm">${item.menu_nm}</div>
                 <div class="price"><fmt:formatNumber type="number" value="${item.menu_price}"/></div>
             </div>
-           	<c:if test="${loginUser.i_user == data.i_user && item.menu_pic != null}">
+           	<c:if test="${loginUser.i_user == data.i_user}"> <!-- && item.menu_pic != null -->
 	       		<div class="delIconContainer" onclick="delRecMenu(${data.i_rest}, ${item.seq})">
     	       		<span class="material-icons">clear</span>
     	   		</div>
@@ -28,8 +28,8 @@
 	<c:if test="${loginUser.i_user == data.i_user}">
 		<div>
 			<a href="/restaurant/resMod"><button>수정</button></a>
-			<button onclick="isDel()">삭제</button>
-			<!-- 가게 기본 정보 등록창 -->
+			<button onclick="isDel()">가게 삭제</button>
+			<!-- 가게 기본 정보 창 -->
 			<form action="/restaurant/addRecMenusProc" id="recFrm" enctype="multipart/form-data" method="POST">
         		<div><button type="button" onclick="addRecMenu()">메뉴 추가</button></div>
         		<input type="hidden" name="i_rest" value="${data.i_rest}">
@@ -38,7 +38,18 @@
         			<input type="submit" value="등록">
         		</div>
     		</form>
-    		<!-- 가게 기본 정보 등록창 -->
+    		<!-- 가게 기본 정보 창 -->
+    		<h2>- 메뉴 -</h2>
+			<div>
+        		<form action="/restaurant/addMenusProc" enctype="multipart/form-data" id="menuFrm">
+            	<input type="file" name="menu_pic" multiple>
+            	<input type="hidden" name="i_rest" value="${data.i_rest}">
+        		<div id="recItem"></div>
+        		<div>
+        			<input type="submit" value="등록">
+        		</div>
+        	</form>
+    		</div>
 		</div>
 	</c:if>
 	<div class="restaurant-detail">
@@ -96,7 +107,7 @@
 	    div.append(' 사진: ');
 	    div.append(inputPic);
 
-	    recItem.append(div);
+	    document.querySelector('#recItem').append(div);
 	}
 	addRecMenu();
 	

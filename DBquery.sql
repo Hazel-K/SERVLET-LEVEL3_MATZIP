@@ -79,3 +79,10 @@ LEFT JOIN (
 ) C
 ON A.i_rest = C.i_rest
 WHERE A.i_rest = 1;
+
+DELETE A FROM t_restaurant_recommend_menu A
+INNER JOIN t_restaurant B
+ON A.i_rest = B.i_rest
+WHERE A.i_rest = ?
+AND A.seq = ?
+AND B.i_user = ?;

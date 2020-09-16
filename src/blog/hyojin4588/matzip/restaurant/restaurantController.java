@@ -49,7 +49,7 @@ public class restaurantController {
 		double lng = CommonUtils.parseStringToDouble(strLng);
 		String strCd_category = request.getParameter("cd_category"); // int로
 		int cd_category = CommonUtils.parseStringToInt(strCd_category);
-		int i_user = SecurityUtils.getLoginUser(request);
+		int i_user = SecurityUtils.getLoginUserPk(request);
 		
 		// 테스트 케이스
 //		System.out.println("strLat : " + strLat + "\nlat" + lat);
@@ -111,10 +111,12 @@ public class restaurantController {
 	
 	// /restaurant/ajaxDelRecMenu 으로 접속 시 해당 메소드 실행
 	public String ajaxDelRecMenu(HttpServletRequest request) {
+		int i_user = SecurityUtils.getLoginUserPk(request);
 		int i_rest = CommonUtils.getIntParameter("i_rest", request);
 		int seq = CommonUtils.getIntParameter("seq", request);
 		
 		RestaurantRecommendMenuVO param = new RestaurantRecommendMenuVO();
+		param.setI_user(i_user);
 		param.setI_rest(i_rest);
 		param.setSeq(seq);
 		

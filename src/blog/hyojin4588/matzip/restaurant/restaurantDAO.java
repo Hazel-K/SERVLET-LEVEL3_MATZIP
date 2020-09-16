@@ -155,11 +155,20 @@ public class restaurantDAO {
 				+ " WHERE i_rest = ? "
 				+ " AND seq = ? ";
 		
-		return JdbcTemplate.executeUpdate(sql, new JdbcUpdateInterface() {
+		// 자기가 등록한 것을 지울 경우
+		String sql1 = " DELETE A FROM t_restaurant_recommend_menu A "
+				+ " INNER JOIN t_restaurant B "
+				+ " ON A.i_rest = B.i_rest "
+				+ " AND B.i_user = ? "
+				+ " WHERE A.i_rest = ? "
+				+ " AND A.seq = ? ";
+
+		return JdbcTemplate.executeUpdate(sql1, new JdbcUpdateInterface() {
 			@Override
 			public void update(PreparedStatement ps) throws SQLException {
-				ps.setInt(1, param.getI_rest());
-				ps.setInt(2, param.getSeq());
+				ps.setInt(1, param.getI_user());
+				ps.setInt(2, param.getI_rest());
+				ps.setInt(3, param.getSeq());
 			}
 		});
 	}
