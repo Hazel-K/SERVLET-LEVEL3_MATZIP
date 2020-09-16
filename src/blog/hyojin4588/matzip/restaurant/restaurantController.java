@@ -87,10 +87,15 @@ public class restaurantController {
 		request.setAttribute("data", service.getDetail(param));
 		// 가게 주소 및 이름 jsp로 내보내기 <끝>
 		
-		// 메뉴 정보 및 이미지 jsp로 내보내기 <시작>
+		// 추천 메뉴 정보 및 이미지 jsp로 내보내기 <시작>
 		List<RestaurantRecommendMenuVO> paramList = service.selRecList(i_rest);
 		request.setAttribute("recommendMenuList", paramList);
-		// 메뉴 정보 및 이미지 jsp로 내보내기 <끝>
+		// 추천 메뉴 정보 및 이미지 jsp로 내보내기 <끝>
+		
+		// 추천 메뉴 이미지 내보내기
+		List<RestaurantRecommendMenuVO> paramList2 = service.selMenuList(i_rest);
+		request.setAttribute("menuList", paramList2);
+		// 추천 메뉴 이미지 내보내기
 		
 		// css 적용할 파일 이름 리스트 내보내기 <시작>
 		String[] cssList = {"resDetail"};
@@ -100,6 +105,12 @@ public class restaurantController {
 		request.setAttribute(Const.TITLE, "식당 보기");
 		request.setAttribute(Const.VIEW, "restaurant/resDetail");
 		return ViewRef.TYPE_1;
+	}
+	
+	// 가게 메뉴 삽입 프로시저
+	public String addMenusProc(HttpServletRequest request) {
+		int i_rest = service.addMenus(request);
+		return "redirect:/restaurant/resDetail?i_rest=" + i_rest;
 	}
 	
 	// /restaurant/addRecMenusProc 으로 접속 시 해당 메소드 실행

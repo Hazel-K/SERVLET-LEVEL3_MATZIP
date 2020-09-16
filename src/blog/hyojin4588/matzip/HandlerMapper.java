@@ -117,6 +117,9 @@ public class HandlerMapper {
 				return resCon.resDetail(request);
 			// restaurant/resDetail로 접속하는 경우
 			
+			case "addMenusProc":
+				return resCon.addMenusProc(request);
+			
 			// restaurant/addRecMenusProc 으로 접속하는 경우
 			case "addRecMenusProc":
 				return resCon.addRecMenusProc(request);

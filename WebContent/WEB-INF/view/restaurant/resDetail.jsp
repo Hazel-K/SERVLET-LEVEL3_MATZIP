@@ -23,6 +23,22 @@
         </div>
     </c:forEach>
 </div>
+<div class="recMenuContainer">
+    <c:forEach items="${menuList}" var="item">
+        <div class="recMenuItem" id="menuItem_${item.seq}">
+            <div class="pic">
+                <c:if test="${item.menu_pic != null && item.menu_pic != ''}">
+                    <img src="/res/img/restaurant/${data.i_rest}/menu/${item.menu_pic}" alt="">
+                </c:if>
+            </div>
+            <c:if test="${loginUser.i_user == data.i_user}"> <!-- && item.menu_pic != null -->
+                <div class="delIconContainer" onclick="delMenu(${data.i_rest}, ${item.seq})">
+                    <span class="material-icons">clear</span>
+                </div>
+            </c:if>
+        </div>
+    </c:forEach>
+</div>
 <!-- 추천 메뉴 리스트 -->
 <div id="sectionContainer">
 	<c:if test="${loginUser.i_user == data.i_user}">
@@ -41,10 +57,10 @@
     		<!-- 가게 기본 정보 창 -->
     		<h2>- 메뉴 -</h2>
 			<div>
-        		<form action="/restaurant/addMenusProc" enctype="multipart/form-data" id="menuFrm">
+        		<form action="/restaurant/addMenusProc" enctype="multipart/form-data" id="menuFrm" method="POST">
             	<input type="file" name="menu_pic" multiple>
             	<input type="hidden" name="i_rest" value="${data.i_rest}">
-        		<div id="recItem"></div>
+        		<div id="menuItem"></div>
         		<div>
         			<input type="submit" value="등록">
         		</div>

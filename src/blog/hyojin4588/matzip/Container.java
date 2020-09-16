@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.protocol.Security;
-
 @WebServlet("/") // "/"만 설정해줄 경우, .xml파일을 수정하기 전까지는 WebContent 폴더에 있는 여타 다른 파일로의 접근이 불가능해짐
+@MultipartConfig( // 파일 다중 업로드 시 설정
+	fileSizeThreshold = 10_485_760, // 10mb
+	maxFileSize = 52_428_800, // 50mb
+	maxRequestSize = 104_857_600 // 100mb
+)
 public class Container extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
